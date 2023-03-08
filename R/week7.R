@@ -18,40 +18,40 @@ week7_tbl = read_csv("../data/week3.csv", show_col_types  = FALSE) %>%  # Using 
 
 
 
-# Visualization- Need to add in ggsave() pipe
-week7_tbl %>% select(starts_with("q")) %>% 
-  ggpairs(aes(position = "jitter"))  
-  
-# Figure 1 
-week7_tbl %>% ggplot(aes(x = timeStart, y = q1)) + 
+# Visualization
+(week7_tbl %>% select(starts_with("q")) %>% 
+  ggpairs(proportions = "auto") ) %>% 
+  # ggsave(filename = "../figs/fig0.png", dpi = 300, width = 10, height = 8, unit = "in")
+week7_tbl %>% ggplot(aes(x = timeStart, y = q1)) + # Figure 1 
   geom_point() + 
-  labs(x = "Date of Experiment", y = "Q1 Score") 
-
-
-# Figure 2 
-week7_tbl %>% ggplot(aes(x = q1, y = q2, color = gender)) +
+  labs(x = "Date of Experiment", y = "Q1 Score") + 
+  theme(axis.title = element_text(face = "bold")) %>%
+  # ggsave(filename = "../figs/fig1.png", dpi = 300, width = 10, height = 8, unit = "in")
+week7_tbl %>% ggplot(aes(x = q1, y = q2, color = gender)) + # Figure 2 
   geom_point(position = "jitter") + 
-  labs(color = "Participant Gender")
+  labs(color = "Participant Gender") + 
+  theme(axis.title =  element_text(face = "bold"), legend.text = element_text(face = "bold"), legend.title = element_text(face = "bold"))
 
-# Figure 3 
-week7_tbl %>% ggplot(aes(x = q1, y = q2)) + 
+week7_tbl %>% ggplot(aes(x = q1, y = q2)) + # Figure 3 
   geom_point(position = "jitter") + 
   facet_grid(cols = vars(gender)) + 
-  labs(x = "Score on Q1", y = "Score on Q2")
+  labs(x = "Score on Q1", y = "Score on Q2") + 
+  theme(axis.title = element_text(face = "bold")) # %>% 
+# ggsave()
 
-
-# Figure 4 
-week7_tbl %>% ggplot(aes(x = gender, y = timeSpent)) + 
+week7_tbl %>% ggplot(aes(x = gender, y = timeSpent)) + # Figure 4 
   geom_boxplot() + 
-  labs(x = "Gender", y = "Time Elapsed (mins)")
+  labs(x = "Gender", y = "Time Elapsed (mins)") + 
+  theme(axis.title = element_text(face = "bold")) # %>% 
+# ggsave()
 
-
-# Figure 5 
-week7_tbl %>% ggplot(aes(x = q5, y = q7, color = condition, fill = condition)) + 
+week7_tbl %>% ggplot(aes(x = q5, y = q7, color = condition, fill = condition)) + # Figure 5 
   geom_point(position = "jitter") + 
   geom_smooth(method = "lm", se = FALSE) + 
   labs(x = "Score on Q5", y = "Score on Q7", color = "Experimental Condition", fill = "Experimental Condition") + 
   theme(legend.position ="bottom",
-        legend.background = element_rect(color = "#DEDEDE", fill = "#DEDEDE"))
+        legend.background = element_rect(color = "#DEDEDE", fill = "#DEDEDE"),
+        axis.title = element_text(face = "bold"), legend.title = element_text(face = "bold"), legend.text = element_text(face = "bold")) # %>% 
+# ggsave()
 
 
