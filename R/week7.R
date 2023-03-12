@@ -18,7 +18,7 @@ week7_tbl = read_csv("../data/week3.csv", show_col_types  = FALSE) %>%  # Using 
 
 
 
-# Visualization- Still need to follow line instruction
+# Visualization- Still need to follow line instruction, also need to scale
 (week7_tbl %>% select(starts_with("q")) %>% 
   ggpairs()) %>% 
   ggsave(filename = "../figs/fig0.png", dpi = 300, width = 10, height = 8, unit = "in")
@@ -53,7 +53,7 @@ week7_tbl = read_csv("../data/week3.csv", show_col_types  = FALSE) %>%  # Using 
   geom_smooth(method = "lm", se = FALSE) + 
   labs(x = "Score on Q5", y = "Score on Q7", color = "Experimental Condition", fill = "Experimental Condition") + 
   theme(legend.position ="bottom",
-        legend.background = element_rect(color = "#DEDEDE", fill = "#DEDEDE"),
+        legend.background = element_rect(color = "#DEDEDE", fill = "#DEDEDE"), # double check color
         axis.title = element_text(face = "bold"), legend.title = element_text(face = "bold"), legend.text = element_text(face = "bold"))) %>% 
   ggsave(filename = "../figs/fig5.png", dpi = 300, width = 7, height = 5, unit = "in")
 
