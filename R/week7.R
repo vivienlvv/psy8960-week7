@@ -53,6 +53,6 @@ week7_tbl = read_csv("../data/week3.csv", show_col_types  = FALSE) %>%  # Using 
   geom_smooth(method = "lm", se = FALSE) + 
   labs(x = "Score on Q5", y = "Score on Q7", color = "Experimental Condition", fill = "Experimental Condition") + 
   theme(legend.position ="bottom",
-        legend.background = element_rect(color = "#DEDEDE", fill = "#DEDEDE"),
+        legend.background = element_rect(color = "#DFDFDF", fill = "#DFDFDF"),
         aspect.ratio = 3/7)) %>% 
   ggsave(filename = "../figs/fig5.png")
