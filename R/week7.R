@@ -25,8 +25,8 @@ week7_tbl = read_csv("../data/week3.csv", show_col_types  = FALSE) %>%  # Using 
 (week7_tbl %>% ggplot(aes(x = timeStart, y = q1)) +  
   geom_point()  + 
   labs(x = "Date of Experiment", y = "Q1 Score") + 
-  theme(aspect.ratio = 6/10)) %>%
-  ggsave(filename = "../figs/fig1.png")
+  theme(aspect.ratio = 6/10)) %>% # Doing it this way will actually create white space
+  ggsave(filename = "../figs/fig1_try.png")
 
 (week7_tbl %>% ggplot(aes(x = q1, y = q2, color = gender)) +  
   geom_point(position = "jitter") + 
@@ -35,7 +35,7 @@ week7_tbl = read_csv("../data/week3.csv", show_col_types  = FALSE) %>%  # Using 
  ggsave(filename = "../figs/fig2.png")
 (week7_tbl %>% ggplot(aes(x = q1, y = q2)) +  
   geom_point(position = "jitter") + 
-  facet_grid(cols = vars(gender), scales = "free") + 
+  facet_grid(cols = vars(gender), scales = "free") + # Forgot to remove "free" 
   labs(x = "Score on Q1", y = "Score on Q2") + 
   theme(aspect.ratio = 1)) %>% 
   ggsave(filename = "../figs/fig3.png")
@@ -54,3 +54,19 @@ week7_tbl = read_csv("../data/week3.csv", show_col_types  = FALSE) %>%  # Using 
         legend.background = element_rect(color = "#DFDFDF", fill = "#DFDFDF"),
         aspect.ratio = 3/7)) %>% 
   ggsave(filename = "../figs/fig5.png")
+
+
+
+
+
+
+
+
+
+(week7_tbl %>% ggplot(aes(x = q1, y = q2, color = gender)) +  
+    geom_point(position = "jitter") + 
+    labs(color = "Participant Gender")) %>% 
+  ggsave(filename = "../figs/fig2_answer.png", units = "px", width = 1920, height = 1080)
+
+
+
